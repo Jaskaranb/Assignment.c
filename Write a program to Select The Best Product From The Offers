@@ -1,0 +1,48 @@
+// Structure to represent a product
+#include <stdio.h>
+
+struct product {
+  char name[50];
+  float price;
+  float discount;
+};
+
+void suggestProducts(struct product products[], int n, float lowDiscount, float highDiscount) {
+  printf("Suggested products for Mr. Ravi:\n");
+  for (int i = 0; i < n; i++) {
+    if (products[i].discount > lowDiscount && products[i].discount < highDiscount) {
+      printf("Product name: %s\n", products[i].name);
+      printf("Price: $%.2f\n", products[i].price);
+      printf("Discount: %.2f%%\n", products[i].discount);
+      printf("\n");
+    }
+  }
+}
+
+int main() {
+  int n;
+  printf("Enter the number of products: ");
+  scanf("%d", &n);
+
+  struct product products[n];
+
+  for (int i = 0; i < n; i++) {
+    printf("Enter product name: ");
+    scanf("%s", products[i].name);
+    printf("Enter product price: ");
+    scanf("%f", &products[i].price);
+    printf("Enter product discount percentage: ");
+    scanf("%f", &products[i].discount);
+  }
+
+  float lowDiscount, highDiscount;
+  printf("Enter Mr. Ravi's specified low discount percentage: ");
+  scanf("%f", &lowDiscount);
+  printf("Enter Mr. Ravi's specified high discount percentage: ");
+  scanf("%f", &highDiscount);
+
+  suggestProducts(products, n, lowDiscount, highDiscount);
+
+  return 0;
+}
+
